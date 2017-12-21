@@ -6,7 +6,7 @@ PYTHONFAULTHANDLER=1
 
 function build_qt {
     build_simple qt-everywhere-opensource-src 
-        4.8.7 https://download.qt.io/official_releases/qt/4.8/4.8.7/qt-everywhere-opensource-src tar.gz
+        4.8.7 https://download.qt.io/official_releases/qt/4.8/4.8.7 tar.gz
         -release -opensource -confirm-license
 }
 
