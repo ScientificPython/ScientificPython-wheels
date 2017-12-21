@@ -34,7 +34,7 @@ function build_qt {
 
 function pre_build {
     # Install the build dependencies
-    build_qt
+    suppress build_qt
     suppress build_netcdf
 }
 
