@@ -23,9 +23,6 @@ python: 3.5
 sudo: required
 dist: trusty
 services: docker
-branches:
-  only:
-  - master
 
 cache:
   directories:
