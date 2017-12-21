@@ -4,8 +4,15 @@
 # Enable Python fault handler on Pythons >= 3.3.
 PYTHONFAULTHANDLER=1
 
+function build_qt {
+    build_simple qt-everywhere-opensource-src 
+        qt 4.8.7 https://download.qt.io/official_releases/qt/4.8/4.8.7/qt-everywhere-opensource-src
+        -release -opensource -confirm-license
+}
+
 function pre_build {
     # Install the build dependencies
+    build_qt
     suppress build_netcdf
 }
 
