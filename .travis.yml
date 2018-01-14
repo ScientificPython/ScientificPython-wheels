@@ -13,7 +13,7 @@ env:
         - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
         # Following generated with
         # travis encrypt -r scikit-umfpack/scikit-umfpack-wheels WHEELHOUSE_UPLOADER_SECRET=<the api key>
-        - secure: "MhmVJMBaQeaCjChHBGTzai+UJpcXf1SX6Ykig6HHWvwP9BFvJKDaaIz5iMLRhXKvzfleA76eli/l2Kd2nFmb73T3PCOtHqFay6EtrJTO0eXAF/yPul8lZwLCKR1M3Xq+NhFiQ5YS+fJx50c0Y/ybLHE9VMaYr3OMaxN0klrGR1m90SpCEDjKYTwNqkS//PxHJ9lwz9pdEzZmXaCx2XHeaSiv6BK/f0mqC2bLD5X0GBnEAxtX4BFN8BbsuSns7pJMmy8P0cw1pkq4GM5Pr0l+R+Qgg9pMJy0em1JKJp3BYugLFaug0x/mg87pRuJQeBlAufOrkKYbIipg1NxCj1jjQ+5h4/tNkYi+/1V+MGiOQFDT2rylJaMK+aFH6IY+7RCfKI7XKQbv1lp8eN38wXcc89FnQ8PnrH7G1Ip5YKeZRGkCKYSCKE98MPtmNwliFBfJmKaCQA8XOLC5m45DTPc9fQv0sJnrM6ra/ZBkGO5mocQTgIk13VSBPL+0wtPD3zhIYTltUWzHmKXKDDNh3zWqnKUGDW2Fo+b2RFZLwnWL9/ayvkL2RuoH/Urf4zpLSwlkQU6XoQEn4vR1kGc8Bf82Sd67qy2PLuzn+mkkKvJobsQ28tLnx34l+vfEmM3FXwkffIwquStDBi8HN2GNUFU526qBr2pKZhvca04JUU5vyKo="
+        - secure: "wEjy5yd02tiUSWbvygg0DwyO/J4jb6pm8v4AOzZXwX+g3dvqj8J3FXsPj7FGy2VI4hxcT/TrOGpdCKOHEC8CF58fTfg2zQF0b6EDgtGXOBTSbFsHYGRRsrr+wghM2M/+x506FIYhTFkAsQ4qZ5DTQWg626LUHNLI3xun1UV97Jn6V4teqosd4aUNiuTYzCAxLErdx85WQK/WhtK0cZzKJn957Y5HmjKEi7E/IUjGrdyp6ZGZ+Ht+kAwPxlDECBNHDoK5FH3brcH1T55H5Q330M6+YQSjDzUgLtNKQW43Gn7X20avMS9yzc1txPmonvF5eBZuiol0RTUZMM3183oVgSo1o6U+tuW17R0iYnovutBI0M4vF+I2Fq9DBycB61SSevKRG9/ZR9fnIoHLart4mnX3bQRXARomhezNE7csgsisyiY48ID8PDibq3SrD2tVfsKQ0XlJNRaJq53HI1uS19COad/LnbnvVHLu59vSbARWw+SMXW8EwdPHMrlPJ+3FcHlExmRZUczeU2rq2keWVWGqFsrqrgkV/AvYwmCeOHCJ/2SKeZYiH21oQELsfxd8kPIYD37MEafTpOco8s1qBFfs6pjhRz/op0UggO1KEo15FDLTxMEmEADAvbmSSW2SX54TzZ9q16uWsxYBQg5icSOETIMXatxEfarmP24QHEU="
         # Commit when running from daily branch
         - DAILY_COMMIT=master
 
@@ -132,8 +132,5 @@ script:
 
 after_success:
     # Upload wheels to Rackspace container
-    - pip install wheelhouse-uploader
-    - python -m wheelhouse_uploader upload --local-folder
-          ${TRAVIS_BUILD_DIR}/wheelhouse/
-          $UPLOAD_ARGS
-          $CONTAINER
+    - pip install twine
+    - twine upload -u xoviat -p $PYPI_PASSWORD --skip-exisitng ${TRAVIS_BUILD_DIR}/wheelhouse/*
