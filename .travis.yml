@@ -134,4 +134,4 @@ script:
 after_success:
     # Upload wheels to Rackspace container
     - pip install twine
-    - twine upload -u xoviat -p $PYPI_PASSWORD --skip-exisitng ${TRAVIS_BUILD_DIR}/wheelhouse/*
+    - twine upload -u xoviat -p $PYPI_PASSWORD --skip-existing ${TRAVIS_BUILD_DIR}/wheelhouse/*
